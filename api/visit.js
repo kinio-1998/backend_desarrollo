@@ -32,12 +32,13 @@ export default async function handler(req, res) {
     const doc = await docRef.get();
 
     if (doc.exists) {
-      await docRef.update({
+      console.log("se inserto una nueva visita de la ip " + ip)
+      /*await docRef.update({
         visitas: FieldValue.increment(1),
         ultimoIngreso: FieldValue.serverTimestamp(),
-      });
+      });*/
     } else {
-      await docRef.set({
+      /*await docRef.set({
         ip,
         fingerprint,
         ubicacion,
@@ -50,6 +51,8 @@ export default async function handler(req, res) {
 
       const counterRef = db.collection("contador").doc("visitors");
       await counterRef.update({ cantidad: FieldValue.increment(1) });
+      */
+     console.log("se inserto una nueva visita")
     }
     return res.status(200).json({ message: "Visita registrada con ubicación" });
   } catch (error) {
